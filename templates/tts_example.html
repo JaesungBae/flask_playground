@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Browser voices</title>
+    <!--
+    <link rel='stylesheet' href="{{ url_for('static', filename='css/main.css')  }}">
+    -->
+    <!--
+    <link rel="stylesheet" href="static/css/main.css">
+    -->
+
     <style type="text/css">
                             * {
                       box-sizing: border-box;
@@ -120,7 +127,21 @@
                       border-top: 1px solid #0d122b;
                       text-align: center;
                     }
+                      .rangeH {width: 100px; height: 20px; margin: 0; padding: 0;}
+                      .rangeV {width: 20px; height: 100px; margin: 0; padding: 0;
+                              -webkit-appearance: slider-vertical; color: #00c;}
     </style>
+  <!-- Script to decrement the range -->
+    <script> 
+        function range_value_down(val) { 
+            document.getElementById( 
+              "rate").stepDown(val); 
+        } 
+        function range_value_up(val) { 
+            document.getElementById( 
+              "rate").stepUp(val); 
+        } 
+    </script> 
   </head>
       <body>
 
@@ -141,13 +162,27 @@
                           <option value="Female">Female</option>
                       </select>
                 </div>
-                <div>
-                  <label for="rate">Rate</label><input type="range" min="0.5" max="2" value="1" step="0.1" id="rate">
-                  <div class="rate-value">1</div>
+                <!--
                   <div class="clearfix"></div>
-                </div>
+
+                  <input type='number' name="rate_changer" id="rate_changer">
+
+                  <input type="range" class="rangeV">
+                  
+                  <input type="range" class="rangeV" min="0" max="9" step="1" list="mark" >
+                -->
+                <script>
+                document.write("<div>")
+                document.write("<label for='rate'>Rate</label><input type='range' class='rangeH' min='0.5' max='2' value='1' step='0.1' id='rate'>")
+                document.write('<div class="rate-value">' + document.getElementById('rate').value + '</div>')
+                document.write("<input type='number' name='rate_changer' id='rate_changer'>")
+                range_value_down(decrement.getElementById('rate_changer').value)
+
+
+                document.write("</div>")
+                </script>
                 <div>
-                  <label for="pitch">Pitch</label><input type="range" min="0" max="2" value="1" step="0.1" id="pitch">
+                  <label for="pitch">Pitch</label><input type="range" class="rangeV" min="0" max="2" value="1" step="0.1" id="pitch">
                   <div class="pitch-value">1</div>
                   <div class="clearfix"></div>
                 </div>
